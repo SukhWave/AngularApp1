@@ -16,21 +16,33 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
-    imports: [RouterOutlet, FormsModule,
+  imports: [RouterOutlet, FormsModule,
     MatButtonModule, MatToolbarModule, MatIconModule, MatBadgeModule,
     MatTableModule, MatCheckboxModule, MatFormFieldModule, MatInputModule,
     MatSlideToggleModule 
-    ],
+  ],
   styleUrl: './app.css'
 })
 export class App {
   protected title = 'reservationsmanager';
+private list = new ReservationList("Sukhwinder", [
+    new ReservationItem("Blue Lake - 9:00 AM to 12:00 PM"),
+    new ReservationItem("Blue Lake - 12:00 PM to 3:00 PM"),
+    new ReservationItem("Blue Lake - 3:00 PM to 6:00 PM"),
 
-  private list = new ReservationList("Sukhwinder", [
-    new ReservationItem("Go for a run", true),
-    new ReservationItem("Get flowers"),
-    new ReservationItem("Collect Tickets")
+    new ReservationItem("Green Woods - 9:00 AM to 12:00 PM"),
+    new ReservationItem("Green Woods - 12:00 PM to 3:00 PM"),
+    new ReservationItem("Green Woods - 3:00 PM to 6:00 PM"),
+
+    new ReservationItem("Sunny Trails - 9:00 AM to 12:00 PM"),
+    new ReservationItem("Sunny Trails - 12:00 PM to 3:00 PM"),
+    new ReservationItem("Sunny Trails - 3:00 PM to 6:00 PM"),
+
+    new ReservationItem("Rocky Hills - 9:00 AM to 12:00 PM"),
+    new ReservationItem("Rocky Hills - 12:00 PM to 3:00 PM"),
+    new ReservationItem("Rocky Hills - 3:00 PM to 6:00 PM"),
   ]);
+ 
   get username(): string
   {
     return this.list.user;
@@ -41,7 +53,7 @@ export class App {
   }
 
   get items(): readonly ReservationItem[] {
-    return this.list.items.filter(item => this.showComplete || !item.book);
+    return this.list.items.filter(item => this.showBooked || !item.book);
   }
 
   addItem(newItem: string) {
@@ -49,5 +61,5 @@ export class App {
     this.list.addItem(newItem);
    }
   }
-  showComplete: boolean = false;
+  showBooked: boolean = false;
 }
