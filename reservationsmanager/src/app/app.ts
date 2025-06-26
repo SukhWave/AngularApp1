@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ReservationList } from './reservationList';
 import { ReservationItem } from './reservationItem';
-import { FormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -16,16 +16,18 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 @Component({
   selector: 'app-root',
   templateUrl: './app.html',
-  imports: [RouterOutlet, FormsModule,
+  styleUrl: './app.css',
+  imports: [
+    RouterOutlet, FormsModule,
     MatButtonModule, MatToolbarModule, MatIconModule, MatBadgeModule,
     MatTableModule, MatCheckboxModule, MatFormFieldModule, MatInputModule,
-    MatSlideToggleModule 
-  ],
-  styleUrl: './app.css'
+    MatSlideToggleModule
+  ]
 })
 export class App {
   protected title = 'reservationsmanager';
-private list = new ReservationList("Sukhwinder", [
+
+  private list = new ReservationList("Sukhwinder", [
     new ReservationItem("Blue Lake - 9:00 AM to 12:00 PM"),
     new ReservationItem("Blue Lake - 12:00 PM to 3:00 PM"),
     new ReservationItem("Blue Lake - 3:00 PM to 6:00 PM"),
@@ -42,18 +44,17 @@ private list = new ReservationList("Sukhwinder", [
     new ReservationItem("Rocky Hills - 12:00 PM to 3:00 PM"),
     new ReservationItem("Rocky Hills - 3:00 PM to 6:00 PM"),
   ]);
- 
-  get username(): string
-  {
+
+  get username(): string {
     return this.list.user;
   }
- 
-  get itemCount(): number{
-    return this.list.items.filter(item => !item.book).length;
+
+  get itemCount(): number {
+    return this.list.items.filter(item => item.book).length;
   }
 
   get items(): readonly ReservationItem[] {
-    return this.list.items.filter(item => this.showBooked || !item.book);
+        return this.list.items.filter(item => this.showComplete || !item.book);
   }
 
   addItem(newItem: string) {
@@ -61,5 +62,5 @@ private list = new ReservationList("Sukhwinder", [
     this.list.addItem(newItem);
    }
   }
-  showBooked: boolean = false;
+  showComplete: boolean = false;
 }
