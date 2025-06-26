@@ -27,7 +27,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 export class App {
   protected title = 'reservationsmanager';
 
-  private list = new ReservationList("Sukhwinder", [
+  private list = new ReservationList("Conservation Area", [
     new ReservationItem("Blue Lake - 9:00 AM to 12:00 PM"),
     new ReservationItem("Blue Lake - 12:00 PM to 3:00 PM"),
     new ReservationItem("Blue Lake - 3:00 PM to 6:00 PM"),
